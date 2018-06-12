@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>CrypteronSqlClrDemo</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{563388a1-b330-4c37-b98c-7639356f03bf}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>CrypteronSqlClrDemo</RootNamespace>
+    <AssemblyName>CrypteronSqlClrDemo</AssemblyName>
+    <ModelCollation>1033, CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <PermissionSet>UNSAFE</PermissionSet>
+    <TargetDatabase>CrypteronSqlClrDemo</TargetDatabase>
+    <AssemblyOwner>dbo</AssemblyOwner>
+    <Trustworthy>True</Trustworthy>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="TestScripts" />
+    <Folder Include="Assemblies\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="CipherCore">
+      <HintPath>Assemblies\CipherCore.dll</HintPath>
+      <SqlPermissionSet>UNSAFE</SqlPermissionSet>
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+    <Reference Include="CipherObject">
+      <HintPath>Assemblies\CipherObject.dll</HintPath>
+      <SqlPermissionSet>UNSAFE</SqlPermissionSet>
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Net.Http.dll</HintPath>
+      <SqlPermissionSet>UNSAFE</SqlPermissionSet>
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+    <Reference Include="System.Runtime.Caching">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Runtime.Caching.dll</HintPath>
+      <SqlPermissionSet>UNSAFE</SqlPermissionSet>
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.Runtime.Serialization.dll</HintPath>
+      <SqlPermissionSet>UNSAFE</SqlPermissionSet>
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+    <Reference Include="System.ServiceModel.Internals">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\System.ServiceModel.Internals.dll</HintPath>
+      <SqlPermissionSet>UNSAFE</SqlPermissionSet>
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+    <Reference Include="SMDiagnostics">
+      <HintPath>C:\Windows\Microsoft.NET\Framework64\v4.0.30319\SMDiagnostics.dll</HintPath>
+      <SqlPermissionSet>UNSAFE</SqlPermissionSet>
+      <IsModelAware>True</IsModelAware>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="TestScripts\Test.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SqlClrUserDefinedFunctions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="CrypteronSqlClrDemo.publish.xml" />
+    <None Include="Assemblies\CipherObject.dll" />
+    <None Include="Assemblies\CipherCore.dll" />
+  </ItemGroup>
+</Project>
