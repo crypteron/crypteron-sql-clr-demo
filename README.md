@@ -1,6 +1,6 @@
 # Encryption and Decryption in SQL Server
 
-This project demonstrates how you can perform encryption and decryption within SQL Server with proper key management techniques. Keys are automatically managed by Crypteron and by not stored them together with SQL Server or your application or with your cloud provider, you have much better security. This way if you a web-application using Crypteron CipherDB or Crypteron CipherObject to protect it's database, your other business applications (like SSRS or SQL Stored Procs) can still work with that database using Crypteron powered SQL CLR functions or SQL CLR SPs. We demonstrate SQL CLR functions here but extending to SQL CLR SPs is straigh forward.
+This project demonstrates how you can perform encryption and decryption within SQL Server with proper key management techniques. Keys are automatically managed by Crypteron and by not stored them together with SQL Server or your application or with your cloud provider, you have much better security. This way if you a web-application using Crypteron CipherDB or Crypteron CipherObject to protect it's database, your other business applications (like SSRS or SQL Stored Procs) can still work with that database.
 
 ## Final usage
 
@@ -14,11 +14,11 @@ Purely as a test example, let's assume the `Users` table has social security num
 
     -- Use the Crypteron user-defined function as necessary
     SELECT
-    [OrderId]
-    ,[dbo].[CrypteronDecrypt]([SecureSearch_SSN]) as SocialSecurityNumber
-    ,[Timestamp]
-    ,[CustomerName]
-    ,[dbo].[CrypteronDecrypt](Secure_CreditCardNumber) as CreditCardNumber
+        [OrderId],
+        [dbo].[CrypteronDecrypt]([SecureSearch_SSN]) as SocialSecurityNumber,
+        [Timestamp],
+        [CustomerName],
+        [dbo].[CrypteronDecrypt](Secure_CreditCardNumber) as CreditCardNumber
     FROM Users 
     WHERE ([dbo].[CrypteronDecrypt](Secure_CreditCardNumber)) LIKE '%1234%'
     GO
