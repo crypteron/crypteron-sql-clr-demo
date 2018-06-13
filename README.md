@@ -40,20 +40,22 @@ the returned results are secure and encrypted. So you can now build secure data 
 3. Double click the `CrypteronSqlClrDemo.publish.xml` file and follow the wizard to generate/deploy to a database. We've defaulted to a localdb instance but you can adjust as needed.
 4. Once deployed, you can test it out by issuing something as seen in `runtest.sql` like
 
-    USE [CrypteronSqlClrDemo]
-    GO
+```
+USE [CrypteronSqlClrDemo]
+GO
 
-    -- Use your own Crypteron AppSecret obtained from https://my.cryteron.com
-    SELECT [dbo].[CrypteronSetAppSecret](N'YourAppSecretFrom_https://my.cryteron.com_GoesHere')
-    GO
+-- Use your own Crypteron AppSecret obtained from https://my.cryteron.com
+SELECT [dbo].[CrypteronSetAppSecret](N'YourAppSecretFrom_https://my.cryteron.com_GoesHere')
+GO
 
-    -- Encrypt some sensitive data, key management happens automatically
-    SELECT [dbo].[CrypteronEncrypt](N'Credit Card: 1234 5678 9012 3456')
-    GO
+-- Encrypt some sensitive data, key management happens automatically
+SELECT [dbo].[CrypteronEncrypt](N'Credit Card: 1234 5678 9012 3456')
+GO
 
-    -- Decrypt it back, key management happens automatically
-    SELECT [dbo].[CrypteronDecrypt](N'TheEncryptedTextYouGotFromTheAboveCallGoesHere')
-    GO
+-- Decrypt it back, key management happens automatically
+SELECT [dbo].[CrypteronDecrypt](N'TheEncryptedTextYouGotFromTheAboveCallGoesHere')
+GO
+```
 
 ## High level architecture
 
@@ -85,11 +87,13 @@ SQL Server's CLR only includes a small subset of the .NET Framework by default b
 
 * Go to solution explorer -> right clicking references -> add reference -> browse (do _NOT_ pick assemblies) -> browse -> `C:\Windows\Microsoft.NET\Framework64\v4.0.30319\` and select the following DLLs
 
+```
     System.Net.Http.dll
     System.Runtime.Caching.dll
     System.Runtime.Serialization.dll
     System.ServiceModel.Internals.dll
     SMDiagnostics.dll
+```
 
 * After added to the VS SQL project, go to solution explorer -> references -> right click the just added references -> properties and set `Model aware=True` and `Permission set=Unsafe` for each of the above. `Model aware=True` adds the dll to the deployment SQL script and hence adds the DLL to SQL Server while `Permission set=Unsafe` is needed since those DLLs call native/unsafe code.
 
@@ -103,7 +107,7 @@ Inactivity or memory pressure situations can cause SQL Server to dispose the CLR
 
 ### Crypteron DLLs in VS SQL Projects
 
-Unlike Visual Studio C# projects, Visual Studio _SQL projects_ don't currently work NuGet packages. So you have to manually download the Crypteron packages from https://www.nuget.org/packages/CipherObject/ and https://www.nuget.org/packages/CipherCore/. After downloading both, rename each file to end in `.zip`. Open the .zip files to find the respective .dlls at the `\lib\net45\` location. Now you can copy these .dlls locally into your project and add as a reference in Visual Studio. This demo VS SQL project is already setup so this guidance is only for your own VS SQL projects.
+Unlike Visual Studio C# projects, Visual Studio _SQL projects_ don't currently work with NuGet packages. So you have to manually download the Crypteron packages from https://www.nuget.org/packages/CipherObject/ and https://www.nuget.org/packages/CipherCore/. After downloading both, rename each file to end in `.zip`. Open the .zip files to find the respective .dlls at the `\lib\net45\` location. Now you can copy these .dlls locally into your project and add as a reference in Visual Studio. This demo VS SQL project is already setup so this guidance is only for your own VS SQL projects.
 
 ### Set DB as Trustworthy in VS SQL project
 
