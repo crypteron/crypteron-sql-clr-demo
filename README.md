@@ -1,8 +1,8 @@
-# Encryption and Decryption in SQL Server
+# Encryption on SQL Server
 
-This project demonstrates how you can perform encryption and decryption within SQL Server with proper key management techniques. Keys are automatically managed by Crypteron and by not stored them together with SQL Server or your application or with your cloud provider, you have much better security. This way if you a web-application using Crypteron CipherDB or Crypteron CipherObject to protect it's database, your other business applications (like SSRS or SQL Stored Procs) can still work with that database.
+Demonstrates how one can use Crypteron's data security platform inside SQL Server with proper key management techniques. Keys are fully decouples and automatically managed by Crypteron. They are not stored on SQL Server or inside your application or with your cloud provider, giving you far superior security. This way if you a web-application using Crypteron CipherDB or Crypteron CipherObject to protect it's database, your other business applications (like SSRS or SQL Stored Procs) can still work with that database.
 
-## Final usage
+## Wildcard searches
 
 Once you've deployed something like this demo to your crypteron protected SQL Server Database, you can use it very powerfully in multiple ways. 
 
